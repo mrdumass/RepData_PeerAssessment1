@@ -2,12 +2,22 @@
 
 
 ## Loading and preprocessing the data
-
-
-
+```{r}
+act<-read.csv("activity.csv")
+```
 ## What is mean total number of steps taken per day?
-
-
+```{r}
+stepsperday<-as.vector(tapply(act$step,act$date,sum))  
+hist(stepsperday,main="Histogram of Total Steps Per Day",xlab="Steps")  
+```
+The mean is
+```{r}
+mean(stepsperday,na.rm=TRUE)  
+```
+The median is
+```{r}
+median(stepsperday,na.rm=TRUE)  
+```
 
 ## What is the average daily activity pattern?
 
