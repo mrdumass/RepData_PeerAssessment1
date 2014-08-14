@@ -26,7 +26,29 @@ averagesteps<-tapply(act$steps,act$interval,mean,na.rm=TRUE)
 plot(names(averagesteps),as.vector(averagesteps),type="l",main="Average Steps per Interval",ylab="Steps",xlab="interval")
 ```
 ## Imputing missing values
-
-
-
+Determine the step intervals that are missing data
+```{r}
+sum(is.na(act$steps))
+```
+Replace the missing value with the median of the average number of steps for that interval
+```{r}
+temp<-cbind(as.array(act$steps),averagesteps)
+problems<-which(is.na(temp))
+temp[problems,1]<-temp[problems,2]
+act2<-act
+act2$steps<-temp[,1]
+```
+repeat the analysis steps per day after the imputation
+```{r}
+stepsperday2<-as.vector(tapply(act2$step,act2$date,sum))  
+hist(stepsperday2,main="Histogram of Total Steps Per Day after imputation",xlab="Steps")  
+```
+The mean is
+```{r}
+mean(stepsperday2)  
+```
+The median is
+```{r}
+median(stepsperday2)  
+```
 ## Are there differences in activity patterns between weekdays and weekends?
