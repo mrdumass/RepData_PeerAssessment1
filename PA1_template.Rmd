@@ -71,9 +71,9 @@ weekday<-act2[act2$week=="Weekday",]
 weekend<-act2[act2$week=="Weekend",]
 aveweekday<-tapply(weekday$steps,weekday$interval,mean)
 aveweekend<-tapply(weekend$steps,weekend$interval,mean)
-par(mfrow=c(2,1))
-plot(names(aveweekday),as.vector(aveweekday),type="l")
-plot(names(aveweekend),as.vector(aveweekend),type="l")     
+par(cex=1.2, mfrow=c(2,1))
+plot(names(aveweekday),as.vector(aveweekday),type="l",main="Weekday",ylab="Steps",xlab="Interval")
+plot(names(aveweekend),as.vector(aveweekend),type="l",main="Weekend",ylab="Steps",xlab="Interval",col="blue")     
 ```  
   
 from the graphs it appears the steps start up later in the day on weekend, but there are also more total steps on average on the weekend which we can show by look at the total average steps.  
